@@ -3,6 +3,9 @@ package com.hipizza.demo.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "Estabelecimento")
 @Data
@@ -30,4 +33,7 @@ public class Estabelecimento {
     private String conta_corrente;
     @Column(name = "senha")
     private String senha; // Provisório até fazer a parte de autenticação
+
+    @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    private List<Funcionario> funcionarios = new ArrayList<>();
 }
