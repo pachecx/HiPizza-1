@@ -22,7 +22,7 @@ public class ProdutoService {
         produtoRepository.deleteById(id);
     }
 
-    public List<Produto> listarFuncionarios() {
+    public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
     }
 

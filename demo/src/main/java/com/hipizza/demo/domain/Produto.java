@@ -20,7 +20,7 @@ public class Produto {
     @Column(name = "valor_unitario")
     private Double valor_unitario;
     @Column(name = "valor_promocao")
-    private Double valorPromocao; // Não obrigatório
+    private Double valor_promocao; // Não obrigatório
     @Column(name = "personalizacao")
     private boolean personalizacao; // Sim ou Não
 
