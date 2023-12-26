@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/categoria")
 public class CategoriaController {
@@ -22,5 +24,11 @@ public class CategoriaController {
     @GetMapping(value = "/lista")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(categoriaService.listarCategorias());
+    }
+
+    @GetMapping("/lista/{idEstabelecimento}")
+    public ResponseEntity<List<Categoria>> getCategoriasPorEstabelecimento(@PathVariable Long idEstabelecimento) {
+        List<Categoria> categorias = categoriaService.getCategoriasPorEstabelecimento(idEstabelecimento);
+        return ResponseEntity.ok(categorias);
     }
 }

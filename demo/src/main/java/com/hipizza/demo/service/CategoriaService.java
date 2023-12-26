@@ -25,7 +25,10 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Categoria buscarFuncionarioPorId(Long id) {
+    public Categoria buscarCategoriaPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
+    }
+    public List<Categoria> getCategoriasPorEstabelecimento(Long idEstabelecimento) {
+        return categoriaRepository.findByEstabelecimentoId(idEstabelecimento);
     }
 }
