@@ -36,4 +36,7 @@ public class Estabelecimento {
 
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
     private List<Funcionario> funcionarios = new ArrayList<>();
+
+    @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    private List<Categoria> categorias = new ArrayList<>();
 }
