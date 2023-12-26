@@ -1,5 +1,8 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -35,8 +38,12 @@ public class Estabelecimento {
     private String senha; // Provisório até fazer a parte de autenticação
 
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
     private List<Funcionario> funcionarios = new ArrayList<>();
 
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
     private List<Categoria> categorias = new ArrayList<>();
 }

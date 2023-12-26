@@ -1,5 +1,8 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -27,6 +30,7 @@ public class Funcionario {
 
     @ManyToOne
     @JoinColumn(name = "estabelecimento_id")
+    @JsonBackReference
     private Estabelecimento estabelecimento;
 }
 
