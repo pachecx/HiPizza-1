@@ -1,6 +1,8 @@
 package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +20,8 @@ public class Categoria {
     private String nome;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
     private List<Produto> produtos = new ArrayList<>();
 
     @ManyToOne

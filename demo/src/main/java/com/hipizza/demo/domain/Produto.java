@@ -1,5 +1,6 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,5 +26,6 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
+    @JsonBackReference
     private Categoria categoria;
 }
