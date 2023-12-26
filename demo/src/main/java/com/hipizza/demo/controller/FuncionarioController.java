@@ -17,7 +17,7 @@ public class FuncionarioController {
 
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<String> incluir(@RequestBody Funcionario funcionario) {
-        funcionarioService.cadastratFuncionario(funcionario);
+        funcionarioService.cadastrarFuncionario(funcionario);
         return ResponseEntity.ok("Funcionário cadastrado com sucesso!");
     }
 
