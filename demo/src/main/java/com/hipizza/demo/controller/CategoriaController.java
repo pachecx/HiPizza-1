@@ -31,4 +31,16 @@ public class CategoriaController {
         List<Categoria> categorias = categoriaService.getCategoriasPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(categorias);
     }
+
+    @DeleteMapping(value = "/{id}/excluir")
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        categoriaService.excluirCategoriaPorId(id);
+        return ResponseEntity.ok("Categoria excluída com sucesso!");
+    }
+
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Categoria categoria) {
+        categoria = categoriaService.atualizarCategoria(id, categoria);
+        return ResponseEntity.ok("Categoria atualizada");
+    }
 }

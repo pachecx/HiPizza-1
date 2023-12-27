@@ -31,4 +31,16 @@ public class CategoriaService {
     public List<Categoria> getCategoriasPorEstabelecimento(Long idEstabelecimento) {
         return categoriaRepository.findByEstabelecimentoId(idEstabelecimento);
     }
+
+    public Categoria atualizarCategoria(Long id, Categoria categoriaAlterada) {
+
+            Categoria categoriaExistente = categoriaRepository.getReferenceById(id);
+            atualizarDados(categoriaExistente, categoriaAlterada);
+            return categoriaRepository.save(categoriaExistente);
+
+    }
+
+    private void atualizarDados(Categoria categoriaExistente, Categoria categoriaAlterada) {
+        categoriaExistente.setNome(categoriaAlterada.getNome());
+    }
 }
