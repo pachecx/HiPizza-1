@@ -1,5 +1,6 @@
 package com.hipizza.demo.controller;
 
+import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.Estabelecimento;
 import com.hipizza.demo.domain.Funcionario;
 import com.hipizza.demo.service.EstabelecimentoService;
@@ -7,6 +8,8 @@ import com.hipizza.demo.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/funcionario")
@@ -24,5 +27,11 @@ public class FuncionarioController {
     @GetMapping(value = "/lista")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(funcionarioService.listarFuncionarios());
+    }
+
+    @GetMapping("/lista/{idEstabelecimento}")
+    public ResponseEntity<List<Funcionario>> getFuncionariosPorEstabelecimento(@PathVariable Long idEstabelecimento) {
+        List<Funcionario> funcionarios = funcionarioService.getFuncionariosPorEstabelecimento(idEstabelecimento);
+        return ResponseEntity.ok(funcionarios);
     }
 }

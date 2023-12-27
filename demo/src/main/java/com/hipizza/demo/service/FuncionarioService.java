@@ -1,5 +1,6 @@
 package com.hipizza.demo.service;
 
+import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.Funcionario;
 import com.hipizza.demo.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class FuncionarioService {
 
     public Funcionario buscarFuncionarioPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
+    }
+
+    public List<Funcionario> getFuncionariosPorEstabelecimento(Long idEstabelecimento) {
+        return funcionarioRepository.findByEstabelecimentoId(idEstabelecimento);
     }
 }
 
