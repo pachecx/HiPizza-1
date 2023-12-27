@@ -20,7 +20,7 @@ public class Categoria {
     private Long id;
 
     @Column(name = "nome", length = 80)
-    @NotBlank(message = "nome não pode ficar em branco!")
+    @NotBlank(message = "Nome não pode ficar em branco!")
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
