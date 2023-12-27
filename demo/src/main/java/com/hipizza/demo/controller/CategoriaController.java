@@ -41,6 +41,6 @@ public class CategoriaController {
     @PutMapping(value = "/{id}/alterar")
     public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Categoria categoria) {
         categoria = categoriaService.atualizarCategoria(id, categoria);
-        return ResponseEntity.ok("Categoria atualizada");
+        return ResponseEntity.ok("Categoria atualizada com sucesso!");
     }
 }

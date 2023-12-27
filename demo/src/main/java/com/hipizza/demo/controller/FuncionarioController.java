@@ -34,4 +34,16 @@ public class FuncionarioController {
         List<Funcionario> funcionarios = funcionarioService.getFuncionariosPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(funcionarios);
     }
+
+    @DeleteMapping(value = "/{id}/excluir")
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        funcionarioService.excluirFuncionarioPorId(id);
+        return ResponseEntity.ok("Funcionário excluído com sucesso!");
+    }
+
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Funcionario funcionario) {
+        funcionario = funcionarioService.atualizarFuncionario(id, funcionario);
+        return ResponseEntity.ok("Funcionário atualizado com sucesso!");
+    }
 }
