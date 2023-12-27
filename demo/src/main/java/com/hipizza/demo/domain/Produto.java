@@ -38,12 +38,11 @@ public class Produto {
     @Column(name = "valor_promocao")
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor da promoção deve ser maior que zero.")
     @DecimalMax(value = "9999999.99", message = "O valor da promoção não pode exceder 9.999.999,99.")
-    @Null
     private BigDecimal valor_promocao;
 
     @Column(name = "personalizacao", length = 5)
     @NotBlank(message = "Personalização não pode ficar em branco!")
-    @Pattern(regexp = "Sim|Não", message = "Personalização deve ser 'Sim' ou 'Não'.")
+    @Pattern(regexp = "sim|não", message = "Personalização deve ser 'Sim' ou 'Não'.")
     private String personalizacao; // "Sim" ou "Não"
 
     @ManyToOne
