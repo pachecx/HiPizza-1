@@ -31,4 +31,16 @@ public class ProdutoController {
         List<Produto> produtos = produtoService.getProdutosPorCategoria(idCategoria);
         return ResponseEntity.ok(produtos);
     }
+
+    @DeleteMapping(value = "/{id}/excluir")
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        produtoService.excluirProdutoPorId(id);
+        return ResponseEntity.ok("Produto excluído com sucesso!");
+    }
+
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Produto produto) {
+        produto = produtoService.atualizarProduto(id, produto);
+        return ResponseEntity.ok("Produto atualizado com sucesso!");
+    }
 }

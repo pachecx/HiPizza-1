@@ -34,4 +34,22 @@ public class ProdutoService {
     public List<Produto> getProdutosPorCategoria(Long idCategoria) {
         return produtoRepository.findByCategoriaId(idCategoria);
     }
+
+    public Produto atualizarProduto(Long id, Produto produtoAlterado) {
+
+        Produto produtoExistente = produtoRepository.getReferenceById(id);
+        atualizarDados(produtoExistente, produtoAlterado);
+        return produtoRepository.save(produtoExistente);
+
+    }
+
+    private void atualizarDados(Produto produtoExistente, Produto produtoAlterado) {
+        produtoExistente.setNome(produtoAlterado.getNome());
+        produtoExistente.setDescricao(produtoAlterado.getDescricao());
+        produtoExistente.setTamanho(produtoAlterado.getTamanho());
+        produtoExistente.setPersonalizacao(produtoAlterado.getPersonalizacao());
+        produtoExistente.setValor_promocao(produtoAlterado.getValor_promocao());
+        produtoExistente.setValor_unitario(produtoAlterado.getValor_unitario());
+        produtoExistente.setCategoria(produtoAlterado.getCategoria());
+    }
 }

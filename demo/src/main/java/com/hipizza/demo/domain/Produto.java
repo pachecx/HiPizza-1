@@ -22,7 +22,7 @@ public class Produto {
     @Column(name = "valor_promocao")
     private Double valor_promocao; // Não obrigatório
     @Column(name = "personalizacao")
-    private boolean personalizacao; // Sim ou Não
+    private Boolean personalizacao; // Sim ou Não
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
