@@ -2,6 +2,7 @@ package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -11,8 +12,11 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "nome")
+    @NotBlank(message = "nome não pode ficar em branco!")
     private String nome;
+
     @Column(name = "descricao")
     private String descricao;
     @Column(name = "tamanho")

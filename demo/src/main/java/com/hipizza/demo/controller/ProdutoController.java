@@ -5,6 +5,7 @@ import com.hipizza.demo.domain.Produto;
 import com.hipizza.demo.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class ProdutoController {
     private ProdutoService produtoService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@RequestBody Produto produto) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Produto produto) {
         produtoService.cadastrarProduto(produto);
         return ResponseEntity.ok("Produto cadastrado com sucesso!");
     }

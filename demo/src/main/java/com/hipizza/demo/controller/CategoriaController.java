@@ -2,8 +2,10 @@ package com.hipizza.demo.controller;
 
 import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.service.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +18,9 @@ public class CategoriaController {
     private CategoriaService categoriaService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@RequestBody Categoria categoria) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Categoria categoria) {
         categoriaService.cadastrarCategoria(categoria);
-        return ResponseEntity.ok("Funcionário cadastrado com sucesso!");
+        return ResponseEntity.ok("Categoria cadastrada com sucesso!");
     }
 
     @GetMapping(value = "/lista")
@@ -39,7 +41,7 @@ public class CategoriaController {
     }
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Categoria categoria) {
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Categoria categoria) {
         categoria = categoriaService.atualizarCategoria(id, categoria);
         return ResponseEntity.ok("Categoria atualizada com sucesso!");
     }
