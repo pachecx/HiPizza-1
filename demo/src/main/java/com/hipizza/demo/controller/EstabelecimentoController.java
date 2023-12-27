@@ -1,5 +1,6 @@
 package com.hipizza.demo.controller;
 
+import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.Estabelecimento;
 import com.hipizza.demo.service.EstabelecimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class EstabelecimentoController {
     @GetMapping(value = "/lista")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(estabelecimentoService.listarEstabelecimentos());
+    }
+
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Estabelecimento estabelecimento) {
+        estabelecimento = estabelecimentoService.atualizarEstabelecimento(id, estabelecimento);
+        return ResponseEntity.ok("Estabelecimento atualizado com sucesso!");
     }
 
 }
