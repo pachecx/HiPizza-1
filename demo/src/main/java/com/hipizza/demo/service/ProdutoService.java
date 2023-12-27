@@ -1,5 +1,6 @@
 package com.hipizza.demo.service;
 
+import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.Produto;
 import com.hipizza.demo.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,9 @@ public class ProdutoService {
 
     public Produto buscarProdutoPorId(Long id) {
         return produtoRepository.findById(id).orElse(null);
+    }
+
+    public List<Produto> getProdutosPorCategoria(Long idCategoria) {
+        return produtoRepository.findByCategoriaId(idCategoria);
     }
 }
