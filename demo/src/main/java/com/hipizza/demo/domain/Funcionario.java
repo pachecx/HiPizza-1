@@ -27,7 +27,7 @@ public class Funcionario {
     @Size(min = 2, max = 150, message = "Endereço inválido!(Deve conter no máximo 150 dígitos)")
     private String endereco;
 
-    @Column(name = "cpf", length = 11)
+    @Column(name = "cpf", length = 11, unique = true)
     @NotBlank(message = "CPF não pode ficar em branco!")
     @Size(min = 11, max = 11, message = "CPF inválido!(Deve conter no máximo 11 dígitos)")
     @Pattern(regexp = "\\d*", message = "CPF deve conter apenas números")

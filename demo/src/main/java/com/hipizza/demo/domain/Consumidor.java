@@ -19,7 +19,7 @@ public class Consumidor {
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
-    @Column(name = "cpf", length = 11)
+    @Column(name = "cpf", length = 11, unique = true)
     @NotBlank(message = "CPF não pode ficar em branco!")
     @Size(min = 11, max = 11, message = "CPF inválido!(Deve conter no máximo 11 dígitos)")
     @Pattern(regexp = "\\d*", message = "CPF deve conter apenas números")

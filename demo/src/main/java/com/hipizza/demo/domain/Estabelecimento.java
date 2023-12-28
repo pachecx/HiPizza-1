@@ -24,7 +24,7 @@ public class Estabelecimento {
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
-    @Column(name = "cpf", length = 11)
+    @Column(name = "cpf", length = 11, unique = true)
     @NotBlank(message = "CPF não pode ficar em branco!")
     @Size(min = 11, max = 11, message = "CPF inválido!(Deve conter no máximo 11 dígitos)")
     @Pattern(regexp = "\\d*", message = "CPF deve conter apenas números")
@@ -44,7 +44,7 @@ public class Estabelecimento {
     @Size(min = 2, max = 150, message = "Endereço inválido!(Deve conter no máximo 150 dígitos)")
     private String endereco;
 
-    @Column(name = "cnpj", length = 14)
+    @Column(name = "cnpj", length = 14, unique = true)
     @NotBlank(message = "CNPJ não pode ficar em branco!")
     @Size(min = 14, max = 14, message = "CNPJ inválido!(Deve conter 14 dígitos)")
     @Pattern(regexp = "\\d*", message = "CNPJ deve conter apenas números")
