@@ -25,6 +25,11 @@ public class EstabelecimentoController {
         return ResponseEntity.ok(estabelecimentoService.listarEstabelecimentos());
     }
 
+    @GetMapping(value = "/listanomes")
+    public ResponseEntity<Object> telaListaProjection() {
+        return ResponseEntity.ok(estabelecimentoService.listarEstabelecimentosProjection());
+    }
+
     @PutMapping(value = "/{id}/alterar")
     public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Estabelecimento estabelecimento) {
         estabelecimento = estabelecimentoService.atualizarEstabelecimento(id, estabelecimento);

@@ -2,6 +2,7 @@ package com.hipizza.demo.service;
 
 import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.Estabelecimento;
+import com.hipizza.demo.projection.EstabelecimentoProjection;
 import com.hipizza.demo.repository.EstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,10 @@ public class EstabelecimentoService {
 
     public List<Estabelecimento> listarEstabelecimentos() {
         return estabelecimentoRepository.findAll();
+    }
+
+    public List<EstabelecimentoProjection> listarEstabelecimentosProjection() {
+        return estabelecimentoRepository.findAllBy();
     }
 
     public Estabelecimento buscarEstabelecimentoPorId(Long id) {
