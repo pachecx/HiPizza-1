@@ -22,7 +22,7 @@ public class Produto {
 
     @Column(name = "descricao", length = 150)
     @NotBlank(message = "Descrição não pode ficar em branco!")
-    @Size(min = 0, max = 80, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
+    @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
     private String descricao;
 
     @Column(name = "tamanho", length = 10)
