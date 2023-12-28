@@ -4,6 +4,7 @@ import com.hipizza.demo.domain.Consumidor;
 import com.hipizza.demo.service.ConsumidorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +14,7 @@ public class ConsumidorController {
     private ConsumidorService consumidorService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@RequestBody Consumidor consumidor) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Consumidor consumidor) {
         consumidorService.cadastrarConsumidor(consumidor);
         return ResponseEntity.ok("Consumidor cadastrado com sucesso!");
     }
@@ -25,7 +26,7 @@ public class ConsumidorController {
 
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Consumidor consumidor) {
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Consumidor consumidor) {
         consumidor = consumidorService.atualizarConsumidor(id, consumidor);
         return ResponseEntity.ok("Consumidor atualizado com sucesso!");
     }
