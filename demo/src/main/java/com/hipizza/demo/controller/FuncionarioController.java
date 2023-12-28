@@ -7,6 +7,7 @@ import com.hipizza.demo.service.EstabelecimentoService;
 import com.hipizza.demo.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class FuncionarioController {
     private FuncionarioService funcionarioService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@RequestBody Funcionario funcionario) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Funcionario funcionario) {
         funcionarioService.cadastrarFuncionario(funcionario);
         return ResponseEntity.ok("Funcionário cadastrado com sucesso!");
     }
@@ -42,7 +43,7 @@ public class FuncionarioController {
     }
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Funcionario funcionario) {
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Funcionario funcionario) {
         funcionario = funcionarioService.atualizarFuncionario(id, funcionario);
         return ResponseEntity.ok("Funcionário atualizado com sucesso!");
     }
