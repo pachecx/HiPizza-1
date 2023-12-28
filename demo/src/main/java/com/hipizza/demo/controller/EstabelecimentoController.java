@@ -5,6 +5,7 @@ import com.hipizza.demo.domain.Estabelecimento;
 import com.hipizza.demo.service.EstabelecimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,7 @@ public class EstabelecimentoController {
     private EstabelecimentoService estabelecimentoService;
 
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@RequestBody Estabelecimento estabelecimento) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Estabelecimento estabelecimento) {
         estabelecimentoService.cadastrarEstabelecimento(estabelecimento);
         return ResponseEntity.ok("Estabelecimento cadastrado com sucesso!");
     }
@@ -31,7 +32,7 @@ public class EstabelecimentoController {
     }
 
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @RequestBody Estabelecimento estabelecimento) {
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Estabelecimento estabelecimento) {
         estabelecimento = estabelecimentoService.atualizarEstabelecimento(id, estabelecimento);
         return ResponseEntity.ok("Estabelecimento atualizado com sucesso!");
     }
