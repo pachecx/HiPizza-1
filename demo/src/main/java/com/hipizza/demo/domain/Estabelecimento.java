@@ -79,4 +79,9 @@ public class Estabelecimento {
     @JsonManagedReference
     @JsonIgnore
     private List<Categoria> categorias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Pedido> pedidos = new ArrayList<>();
 }

@@ -1,10 +1,15 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Consumidor")
@@ -74,4 +79,9 @@ public class Consumidor {
     @Column(name = "ponto_referencia", length = 70)
     @Size(min = 1, max = 70, message = "Ponto de referência inválido!(Deve conter no máximo 70 caracteres)")
     private String ponto_referencia;
+
+    @OneToMany(mappedBy = "consumidor", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Pedido> pedidos = new ArrayList<>();
 }
