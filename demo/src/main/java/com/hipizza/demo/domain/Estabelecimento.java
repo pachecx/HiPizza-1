@@ -52,7 +52,7 @@ public class Estabelecimento {
 
     @Column(name = "razao_social", length = 80)
     @NotBlank(message = "Razão Social não pode ficar em branco!")
-    @Size(min = 14, max = 14, message = "Razão Social inválido!(Deve conter no máximo 80 caracteres)")
+    @Size(min = 1, max = 80, message = "Razão Social inválido!(Deve conter no máximo 80 caracteres)")
     private String razao_social;
 
     @Column(name = "agencia", length = 4)

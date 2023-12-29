@@ -1,6 +1,7 @@
 package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hipizza.demo.enums.StatusPedido;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,9 +18,6 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "quantidade")
-    private int quantidade;
-
     @Column(name = "valor_total")
     private BigDecimal valor_total;
 
@@ -33,13 +31,9 @@ public class Pedido {
     @Column(name = "status")
     private StatusPedido status;
 
-    @ManyToMany
-    @JoinTable(
-            name = "pedido_produto",
-            joinColumns = @JoinColumn(name = "pedido_id"),
-            inverseJoinColumns = @JoinColumn(name = "produto_id")
-    )
-    private List<Produto> produtos;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ItemPedido> itensPedido = new ArrayList<>();
 
     @ManyToOne
     @JsonIgnore

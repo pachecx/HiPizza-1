@@ -31,6 +31,8 @@ public class ProdutoService {
         return produtoRepository.findById(id).orElse(null);
     }
 
+
+
     public List<Produto> getProdutosPorCategoria(Long idCategoria) {
         return produtoRepository.findByCategoriaId(idCategoria);
     }
