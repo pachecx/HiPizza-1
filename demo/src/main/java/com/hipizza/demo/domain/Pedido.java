@@ -24,7 +24,7 @@ public class Pedido {
     private BigDecimal valor_total;
 
     @Column(name = "forma_pagamento")
-    private String forma_fagamento;
+    private String forma_pagamento;
 
     @Column(name = "observacao")
     private String observacao;
