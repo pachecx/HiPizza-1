@@ -21,10 +21,10 @@ public class Pedido {
     private int quantidade;
 
     @Column(name = "valor_total")
-    private BigDecimal valorTotal;
+    private BigDecimal valor_total;
 
     @Column(name = "forma_pagamento")
-    private String formaPagamento;
+    private String forma_fagamento;
 
     @Column(name = "observacao")
     private String observacao;
