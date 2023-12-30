@@ -6,13 +6,13 @@ public enum StatusPedido {
     ENTREGANDO("Entregando"),
     ENTREGUE("Entregue");
 
-    private final String descricao;
+    private final String status_pedido;
 
-    StatusPedido(String descricao) {
-        this.descricao = descricao;
+    StatusPedido(String status_pedido) {
+        this.status_pedido = status_pedido;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getStatus_pedido() {
+        return status_pedido;
     }
 }

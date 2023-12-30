@@ -2,8 +2,11 @@ package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.hipizza.demo.enums.FormaPagamento;
 import com.hipizza.demo.enums.StatusPedido;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -21,14 +24,17 @@ public class Pedido {
     @Column(name = "valor_total")
     private BigDecimal valor_total;
 
-    @Column(name = "forma_pagamento")
-    private String forma_pagamento;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "forma_pagamento", length = 30)
+    @NotBlank(message = "Forma de pagamento não pode ficar em branco!")
+    private FormaPagamento forma_pagamento;
 
-    @Column(name = "observacao")
+    @Column(name = "observacao", length = 150)
+    @Size(min = 1, max = 150, message = "Observação inválida!(Deve conter no máximo 150 caracteres)")
     private String observacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status", length = 12)
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
