@@ -13,11 +13,11 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    @PostMapping("/criar")
+    @PostMapping("/fazer")
     public ResponseEntity<String> criarPedido(@RequestBody Pedido pedido) {
         pedidoService.cadastrarPedido(pedido);
 
-         return ResponseEntity.ok("Pedido cadastrado com sucesso!");
+         return ResponseEntity.ok("Pedido realizado com sucesso!");
     }
 
     @GetMapping(value = "/lista")
