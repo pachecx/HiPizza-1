@@ -1,12 +1,10 @@
 package com.hipizza.demo.service;
 
-import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.ItemPedido;
 import com.hipizza.demo.domain.Pedido;
 import com.hipizza.demo.domain.Produto;
 import com.hipizza.demo.repository.PedidoRepository;
 import com.hipizza.demo.repository.ProdutoRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +27,10 @@ public class PedidoService {
 
     public List<Pedido> listarPedidos() {
         return pedidoRepository.findAll();
+    }
+
+    public List<Pedido> getPedidosPorConsumidor(Long idConsumidor) {
+        return pedidoRepository.findByConsumidorId(idConsumidor);
     }
 
     public void excluirPedidoPorId(Long id) {

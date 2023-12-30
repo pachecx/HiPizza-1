@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/pedido")
 public class PedidoController {
@@ -23,6 +25,12 @@ public class PedidoController {
     @GetMapping(value = "/lista")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(pedidoService.listarPedidos());
+    }
+
+    @GetMapping("/lista/{idConsumidor}")
+    public ResponseEntity<List<Pedido>> getPedidosPorConsumidor(@PathVariable Long idConsumidor) {
+        List<Pedido> pedidos = pedidoService.getPedidosPorConsumidor(idConsumidor);
+        return ResponseEntity.ok(pedidos);
     }
 
     @DeleteMapping(value = "/{id}/excluir")

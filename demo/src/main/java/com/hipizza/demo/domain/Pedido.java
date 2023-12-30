@@ -27,7 +27,6 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "forma_pagamento", length = 30)
-    @NotEmpty(message = "A forma de pagamento não pode ficar em branco!")
     private FormaPagamento forma_pagamento;
 
     @Column(name = "observacao", length = 150)
@@ -36,7 +35,6 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 12)
-    @NotEmpty(message = "Status não pode ficar em branco!")
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -44,12 +42,10 @@ public class Pedido {
     private List<ItemPedido> itensPedido = new ArrayList<>();
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "consumidor_id")
     private Consumidor consumidor;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "estabelecimento_id")
     private Estabelecimento estabelecimento;
 
