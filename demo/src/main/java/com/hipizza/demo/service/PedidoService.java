@@ -42,15 +42,18 @@ public class PedidoService {
             Produto produto = produtoRepository.findById(itemPedido.getProduto().getId()).orElse(null);
 
             BigDecimal valorUnitario = produto.getValor_unitario();
+            BigDecimal valorPromocao = produto.getValor_promocao();
 
-            if (valorUnitario != null) {
-                // Calcular quantidade * valor unitário
-                BigDecimal valorItem = valorUnitario.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
+            if (valorPromocao != null) {
+                // Calcular quantidade * valor unitário (do valor promocional)
+                BigDecimal valorItem = valorPromocao.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
 
                 // Somar o valor do item ao valor total do pedido
                 valorTotal = valorTotal.add(valorItem);
             } else {
-
+                //calcula do valor sem promoção
+                BigDecimal valorItem = valorUnitario.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
+                valorTotal = valorTotal.add(valorItem);
             }
         }
 
