@@ -6,6 +6,7 @@ import com.hipizza.demo.enums.FormaPagamento;
 import com.hipizza.demo.enums.StatusPedido;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -26,7 +27,7 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "forma_pagamento", length = 30)
-    @NotBlank(message = "Forma de pagamento não pode ficar em branco!")
+    @NotEmpty(message = "A forma de pagamento não pode ficar em branco!")
     private FormaPagamento forma_pagamento;
 
     @Column(name = "observacao", length = 150)
@@ -35,6 +36,7 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 12)
+    @NotEmpty(message = "Status não pode ficar em branco!")
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
