@@ -3,7 +3,6 @@ package com.hipizza.demo.controller;
 import com.hipizza.demo.domain.Pedido;
 import com.hipizza.demo.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,9 +26,15 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.listarPedidos());
     }
 
-    @GetMapping("/lista/{idConsumidor}")
+    @GetMapping("/lista-consumidor/{idConsumidor}")
     public ResponseEntity<List<Pedido>> getPedidosPorConsumidor(@PathVariable Long idConsumidor) {
         List<Pedido> pedidos = pedidoService.getPedidosPorConsumidor(idConsumidor);
+        return ResponseEntity.ok(pedidos);
+    }
+    @GetMapping("/lista-estabelecimento/{idEstabelecimento}")
+    public ResponseEntity<List<Pedido>> getPedidosPorEstabelecimento(
+            @PathVariable Long idEstabelecimento) {
+        List<Pedido> pedidos = pedidoService.getPedidosPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(pedidos);
     }
 

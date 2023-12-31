@@ -33,6 +33,12 @@ public class PedidoService {
         return pedidoRepository.findByConsumidorId(idConsumidor);
     }
 
+
+    public List<Pedido> getPedidosPorEstabelecimento(Long idEstabelecimento) {
+        return pedidoRepository.findByEstabelecimentoId(idEstabelecimento);
+    }
+
+
     public void excluirPedidoPorId(Long id) {
         pedidoRepository.deleteById(id);
     }

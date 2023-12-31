@@ -1,5 +1,6 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hipizza.demo.enums.FormaPagamento;
@@ -43,10 +44,12 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "consumidor_id")
+    @JsonBackReference
     private Consumidor consumidor;
 
     @ManyToOne
     @JoinColumn(name = "estabelecimento_id")
+    @JsonBackReference
     private Estabelecimento estabelecimento;
 
 }
