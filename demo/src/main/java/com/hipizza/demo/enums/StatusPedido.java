@@ -1,6 +1,7 @@
 package com.hipizza.demo.enums;
 
 public enum StatusPedido {
+    CONFIRMADO("Confirmado"),
     FAZENDO("Fazendo"),
     PRONTO("Pronto"),
     ENTREGANDO("Entregando"),
