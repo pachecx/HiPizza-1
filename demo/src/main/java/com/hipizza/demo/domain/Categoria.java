@@ -24,6 +24,10 @@ public class Categoria {
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
+    @Column(name = "descricao", length = 150)
+    @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
+    private String descricao;
+
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
