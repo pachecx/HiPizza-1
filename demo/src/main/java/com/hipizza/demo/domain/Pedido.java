@@ -44,12 +44,12 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "consumidor_id")
-    @JsonBackReference
+    //@JsonBackReference
     private Consumidor consumidor;
 
     @ManyToOne
     @JoinColumn(name = "estabelecimento_id")
-    @JsonBackReference
+    //@JsonBackReference
     private Estabelecimento estabelecimento;
 
 }

@@ -13,7 +13,7 @@ public class ItemPedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "pedido_id")
     @JsonBackReference
     private Pedido pedido;
