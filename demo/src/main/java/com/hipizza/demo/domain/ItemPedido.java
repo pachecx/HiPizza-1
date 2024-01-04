@@ -2,6 +2,9 @@ package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
@@ -23,5 +26,8 @@ public class ItemPedido {
     private Produto produto;
 
     @Column(name = "quantidade")
+    @NotNull
+    @Min(value = 1, message = "A quantidade deve ser no mínimo 1")
+    @Max(value = 999, message = "A quantidade deve ser no máximo 999")
     private int quantidade;
 }
