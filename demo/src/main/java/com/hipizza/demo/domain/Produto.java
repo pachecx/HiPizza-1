@@ -25,10 +25,6 @@ public class Produto {
     @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
     private String descricao;
 
-    @Column(name = "tamanho", length = 10)
-    @Pattern(regexp = "pequeno|médio|grande", message = "tamanho deve ser: pequeno, médio ou grande")
-    private String tamanho;
-
     @Column(name = "valor_unitario")
     @NotNull(message = "O valor unitário não pode ficar em branco!")
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor unitário deve ser maior que zero.")
