@@ -48,7 +48,6 @@ public class ProdutoService {
     private void atualizarDados(Produto produtoExistente, Produto produtoAlterado) {
         produtoExistente.setNome(produtoAlterado.getNome());
         produtoExistente.setDescricao(produtoAlterado.getDescricao());
-        produtoExistente.setTamanho(produtoAlterado.getTamanho());
         produtoExistente.setPersonalizacao(produtoAlterado.getPersonalizacao());
         produtoExistente.setValor_promocao(produtoAlterado.getValor_promocao());
         produtoExistente.setValor_unitario(produtoAlterado.getValor_unitario());

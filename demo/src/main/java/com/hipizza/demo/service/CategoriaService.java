@@ -42,5 +42,7 @@ public class CategoriaService {
 
     private void atualizarDados(Categoria categoriaExistente, Categoria categoriaAlterada) {
         categoriaExistente.setNome(categoriaAlterada.getNome());
+        categoriaExistente.setTamanho(categoriaAlterada.getTamanho());
+        categoriaExistente.setDescricao(categoriaAlterada.getDescricao());
     }
 }
