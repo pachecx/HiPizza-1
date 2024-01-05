@@ -30,7 +30,7 @@ public class Produto {
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor unitário deve ser maior que zero.")
     @DecimalMax(value = "9999999.99", message = "O valor unitário não pode exceder 9.999.999,99.")
     private BigDecimal valor_unitario;
-    
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     @JsonBackReference
