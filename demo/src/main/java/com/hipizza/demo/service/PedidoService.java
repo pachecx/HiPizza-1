@@ -39,11 +39,9 @@ public class PedidoService {
         return pedidoRepository.findByConsumidorId(idConsumidor);
     }
 
-
     public List<Pedido> getPedidosPorEstabelecimento(Long idEstabelecimento) {
         return pedidoRepository.findByEstabelecimentoId(idEstabelecimento);
     }
-
 
     public void excluirPedidoPorId(Long id) {
         pedidoRepository.deleteById(id);
@@ -59,25 +57,21 @@ public class PedidoService {
         BigDecimal valorTotal = BigDecimal.ZERO;
         BigDecimal valorEntrega = perfilEstabelecimento.getValor_entrega();
 
-        valorTotal = valorTotal.add(valorEntrega);
+        valorTotal = valorTotal.add(valorEntrega);//somando com valor da entrega
         for (ItemPedido itemPedido : pedido.getItensPedido()) {
             Produto produto = produtoRepository.findById(itemPedido.getProduto().getId()).orElse(null);
 
             BigDecimal valorUnitario = produto.getValor_unitario();
 
-            if (valorUnitario != null) {
-                // Calcular quantidade * valor unitário
-                BigDecimal valorItem = valorUnitario.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
+            // Calcular quantidade * valor unitário
+            BigDecimal valorItem = valorUnitario.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
 
-                // Somar o valor do item ao valor total do pedido
-                valorTotal = valorTotal.add(valorItem);
-            } else {
+            // Somar o valor do item ao valor total do pedido
+            valorTotal = valorTotal.add(valorItem);
 
-            }
         }
 
         pedido.setValor_total(valorTotal);
     }
-
 
 }
