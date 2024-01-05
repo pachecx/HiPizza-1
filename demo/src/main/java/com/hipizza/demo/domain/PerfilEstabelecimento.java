@@ -30,7 +30,7 @@ public class PerfilEstabelecimento {
     @Column(name = "valor_entrega")
     @DecimalMin(value = "0.0", inclusive = true, message = "O valor unitário deve ser maior ou igual zero.")
     @DecimalMax(value = "9999999.99", message = "O valor unitário não pode exceder 9.999.999,99.")
-    private BigDecimal valor_unitario;
+    private BigDecimal valor_entrega;
 
     @Column(name = "tempo_entrega")
     @Min(value = 1, message = "O tempo deve ser no mínimo 1")

@@ -1,9 +1,9 @@
 package com.hipizza.demo.service;
 
-import com.hipizza.demo.domain.ItemPedido;
-import com.hipizza.demo.domain.Pedido;
-import com.hipizza.demo.domain.Produto;
+import com.hipizza.demo.domain.*;
+import com.hipizza.demo.repository.EstabelecimentoRepository;
 import com.hipizza.demo.repository.PedidoRepository;
+import com.hipizza.demo.repository.PerfilEstabelecimentoRepository;
 import com.hipizza.demo.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,12 @@ public class PedidoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private PerfilEstabelecimentoRepository perfilEstabelecimentoRepository;
+
+    @Autowired
+    private EstabelecimentoRepository estabelecimentoRepository;
 
 
     public void cadastrarPedido(Pedido pedido) {
@@ -44,8 +50,16 @@ public class PedidoService {
     }
 
     public void calcularValorTotal(Pedido pedido) {
-        BigDecimal valorTotal = BigDecimal.ZERO;
+        Estabelecimento estabelecimento = estabelecimentoRepository.findById(
+                pedido.getEstabelecimento().getId()).orElse(null);
 
+        PerfilEstabelecimento perfilEstabelecimento = perfilEstabelecimentoRepository.findById(
+                estabelecimento.getPerfilEstabelecimento().getId()).orElse(null);
+
+        BigDecimal valorTotal = BigDecimal.ZERO;
+        BigDecimal valorEntrega = perfilEstabelecimento.getValor_entrega();
+
+        valorTotal = valorTotal.add(valorEntrega);
         for (ItemPedido itemPedido : pedido.getItensPedido()) {
             Produto produto = produtoRepository.findById(itemPedido.getProduto().getId()).orElse(null);
 
