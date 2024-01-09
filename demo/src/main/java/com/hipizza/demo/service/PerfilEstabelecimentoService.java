@@ -20,4 +20,8 @@ public class PerfilEstabelecimentoService {
     public List<PerfilEstabelecimento> listarPerfil() {
         return perfilEstabelecimentoRepository.findAll();
     }
+
+    public void excluirPerfilPorId(Long id) {
+        perfilEstabelecimentoRepository.deleteById(id);
+    }
 }

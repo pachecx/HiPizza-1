@@ -24,4 +24,10 @@ public class PerfilEstabelecimentoController {
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(perfilEstabelecimentoService.listarPerfil());
     }
+
+    @DeleteMapping(value = "/{id}/excluir")
+    public ResponseEntity<String> excluir(@PathVariable Long id) {
+        perfilEstabelecimentoService.excluirPerfilPorId(id);
+        return ResponseEntity.ok("Perfil excluído com sucesso!");
+    }
 }
