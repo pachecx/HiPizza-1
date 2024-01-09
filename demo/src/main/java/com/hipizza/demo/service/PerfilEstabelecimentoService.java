@@ -24,4 +24,19 @@ public class PerfilEstabelecimentoService {
     public void excluirPerfilPorId(Long id) {
         perfilEstabelecimentoRepository.deleteById(id);
     }
+
+    public PerfilEstabelecimento atualizarPerfil(Long id, PerfilEstabelecimento perfilAlterado) {
+        PerfilEstabelecimento perfilExistente = perfilEstabelecimentoRepository.getReferenceById(id);
+        atualizarDados(perfilExistente, perfilAlterado);
+        return perfilEstabelecimentoRepository.save(perfilExistente);
+    }
+
+    private void atualizarDados(PerfilEstabelecimento perfilExistente, PerfilEstabelecimento perfilAlterado) {
+        perfilExistente.setNome(perfilAlterado.getNome());
+        perfilExistente.setDescricao(perfilAlterado.getDescricao());
+        perfilExistente.setFormasPagamento(perfilAlterado.getFormasPagamento());
+        perfilExistente.setHorario_fechamento(perfilAlterado.getHorario_fechamento());
+        perfilExistente.setTempo_entrega(perfilAlterado.getTempo_entrega());
+        perfilExistente.setValor_entrega(perfilAlterado.getValor_entrega());
+    }
 }

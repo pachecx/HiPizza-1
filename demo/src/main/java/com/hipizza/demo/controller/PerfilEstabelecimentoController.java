@@ -30,4 +30,10 @@ public class PerfilEstabelecimentoController {
         perfilEstabelecimentoService.excluirPerfilPorId(id);
         return ResponseEntity.ok("Perfil excluído com sucesso!");
     }
+
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody PerfilEstabelecimento perfilEstabelecimento) {
+        perfilEstabelecimento = perfilEstabelecimentoService.atualizarPerfil(id, perfilEstabelecimento);
+        return ResponseEntity.ok("Perfil atualizado com sucesso!");
+    }
 }
