@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/perfil-estabelecimento")
 public class PerfilEstabelecimentoController {
@@ -23,6 +25,12 @@ public class PerfilEstabelecimentoController {
     @GetMapping(value = "/lista")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(perfilEstabelecimentoService.listarPerfil());
+    }
+
+    @GetMapping("/lista/{idEstabelecimento}")
+    public ResponseEntity<List<PerfilEstabelecimento>> getPerfilPorEstabelecimento(@PathVariable Long idEstabelecimento) {
+        List<PerfilEstabelecimento> perfis = perfilEstabelecimentoService.getPerfilPorEstabelecimento(idEstabelecimento);
+        return ResponseEntity.ok(perfis);
     }
 
     @DeleteMapping(value = "/{id}/excluir")

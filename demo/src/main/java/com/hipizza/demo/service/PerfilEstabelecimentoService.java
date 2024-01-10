@@ -1,6 +1,5 @@
 package com.hipizza.demo.service;
 
-import com.hipizza.demo.domain.Categoria;
 import com.hipizza.demo.domain.PerfilEstabelecimento;
 import com.hipizza.demo.repository.PerfilEstabelecimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,10 @@ public class PerfilEstabelecimentoService {
 
     public List<PerfilEstabelecimento> listarPerfil() {
         return perfilEstabelecimentoRepository.findAll();
+    }
+
+    public List<PerfilEstabelecimento> getPerfilPorEstabelecimento(Long idEstabelecimento) {
+        return perfilEstabelecimentoRepository.findByEstabelecimentoId(idEstabelecimento);
     }
 
     public void excluirPerfilPorId(Long id) {
