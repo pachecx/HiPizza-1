@@ -8,25 +8,26 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
-@Table(name = "ItemPedido")
+@Table(name = "DB105_itens_pedidos")
 @Data
 public class ItemPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "DB104_ITE_PED_ID")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pedido_id")
+    @JoinColumn(name = "DB106_PED_ID")
     @JsonBackReference
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "produto_id", nullable = false)
+    @JoinColumn(name = "DB108_PRO_ID", nullable = false)
     private Produto produto;
 
-    @Column(name = "quantidade")
-    @NotNull
+    @Column(name = "DB104_ITE_PED_QTD", nullable = false)
+    @NotNull(message = "quantidade não pode ser nulo!")
     @Min(value = 1, message = "A quantidade deve ser no mínimo 1")
     @Max(value = 999, message = "A quantidade deve ser no máximo 999")
     private int quantidade;

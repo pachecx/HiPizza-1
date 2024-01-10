@@ -17,7 +17,7 @@ import java.util.List;
 public class Consumidor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DB102_ID")
+    @Column(name = "DB102_CON_ID")
     private Long id;
 
     @Column(name = "DB102_CON_NOME", length = 80, nullable = false)

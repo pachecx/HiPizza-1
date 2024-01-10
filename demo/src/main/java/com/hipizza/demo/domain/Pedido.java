@@ -16,26 +16,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Pedido")
+@Table(name = "DB106_PedidoS")
 @Data
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "DB106_PED_ID")
     private Long id;
 
-    @Column(name = "valor_total")
+    @Column(name = "DB106_PED_VALOR_TOTAL")
     private BigDecimal valor_total;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "forma_pagamento", length = 30)
+    @Column(name = "DB106_PED_FORMA_PAGAMENTO", length = 30)
     private FormaPagamento forma_pagamento;
 
-    @Column(name = "observacao", length = 150)
+    @Column(name = "DB106_PED_OBS", length = 150)
     @Size(min = 1, max = 150, message = "Observação inválida!(Deve conter no máximo 150 caracteres)")
     private String observacao;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", length = 12)
+    @Column(name = "DB106_PED_STATUS", length = 12)
     private StatusPedido status;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -43,12 +44,12 @@ public class Pedido {
     private List<ItemPedido> itensPedido = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "consumidor_id")
+    @JoinColumn(name = "DB102_CON_ID")
     //@JsonBackReference
     private Consumidor consumidor;
 
     @ManyToOne
-    @JoinColumn(name = "estabelecimento_id")
+    @JoinColumn(name = "DB101_EST_ID")
     //@JsonBackReference
     private Estabelecimento estabelecimento;
 
