@@ -21,12 +21,12 @@ public class EstabelecimentoController {
         return ResponseEntity.ok("Estabelecimento cadastrado com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(estabelecimentoService.listarEstabelecimentos());
     }
 
-    @GetMapping(value = "/listanomes")
+    @GetMapping(value = "/listar-nomes")
     public ResponseEntity<Object> telaListaProjection() {
         return ResponseEntity.ok(estabelecimentoService.listarEstabelecimentosProjection());
     }

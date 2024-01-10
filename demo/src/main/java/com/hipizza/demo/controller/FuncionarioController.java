@@ -25,12 +25,12 @@ public class FuncionarioController {
         return ResponseEntity.ok("Funcionário cadastrado com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(funcionarioService.listarFuncionarios());
     }
 
-    @GetMapping("/lista/{idEstabelecimento}")
+    @GetMapping("/listar/{idEstabelecimento}")
     public ResponseEntity<List<Funcionario>> getFuncionariosPorEstabelecimento(@PathVariable Long idEstabelecimento) {
         List<Funcionario> funcionarios = funcionarioService.getFuncionariosPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(funcionarios);

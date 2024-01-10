@@ -21,17 +21,17 @@ public class PedidoController {
         return ResponseEntity.ok("Pedido realizado com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(pedidoService.listarPedidos());
     }
 
-    @GetMapping("/lista-consumidor/{idConsumidor}")
+    @GetMapping("/listar-consumidor/{idConsumidor}")
     public ResponseEntity<List<Pedido>> getPedidosPorConsumidor(@PathVariable Long idConsumidor) {
         List<Pedido> pedidos = pedidoService.getPedidosPorConsumidor(idConsumidor);
         return ResponseEntity.ok(pedidos);
     }
-    @GetMapping("/lista-estabelecimento/{idEstabelecimento}")
+    @GetMapping("/listar-estabelecimento/{idEstabelecimento}")
     public ResponseEntity<List<Pedido>> getPedidosPorEstabelecimento(
             @PathVariable Long idEstabelecimento) {
         List<Pedido> pedidos = pedidoService.getPedidosPorEstabelecimento(idEstabelecimento);

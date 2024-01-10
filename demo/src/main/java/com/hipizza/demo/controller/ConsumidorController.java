@@ -19,7 +19,7 @@ public class ConsumidorController {
         return ResponseEntity.ok("Consumidor cadastrado com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(consumidorService.listarConsumidores());
     }

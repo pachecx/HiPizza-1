@@ -22,12 +22,12 @@ public class PerfilEstabelecimentoController {
         return ResponseEntity.ok("Perfil cadastrada com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(perfilEstabelecimentoService.listarPerfil());
     }
 
-    @GetMapping("/lista/{idEstabelecimento}")
+    @GetMapping("/listar/{idEstabelecimento}")
     public ResponseEntity<List<PerfilEstabelecimento>> getPerfilPorEstabelecimento(@PathVariable Long idEstabelecimento) {
         List<PerfilEstabelecimento> perfis = perfilEstabelecimentoService.getPerfilPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(perfis);

@@ -22,12 +22,12 @@ public class ProdutoController {
         return ResponseEntity.ok("Produto cadastrado com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(produtoService.listarProdutos());
     }
 
-    @GetMapping("/lista/{idCategoria}")
+    @GetMapping("/listar/{idCategoria}")
     public ResponseEntity<List<Produto>> getProdutoPorCategoria(@PathVariable Long idCategoria) {
         List<Produto> produtos = produtoService.getProdutosPorCategoria(idCategoria);
         return ResponseEntity.ok(produtos);

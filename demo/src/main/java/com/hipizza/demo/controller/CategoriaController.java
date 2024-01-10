@@ -23,12 +23,12 @@ public class CategoriaController {
         return ResponseEntity.ok("Categoria cadastrada com sucesso!");
     }
 
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/listar")
     public ResponseEntity<Object> telaLista() {
         return ResponseEntity.ok(categoriaService.listarCategorias());
     }
 
-    @GetMapping("/lista/{idEstabelecimento}")
+    @GetMapping("/listar/{idEstabelecimento}")
     public ResponseEntity<List<Categoria>> getCategoriasPorEstabelecimento(@PathVariable Long idEstabelecimento) {
         List<Categoria> categorias = categoriaService.getCategoriasPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(categorias);
