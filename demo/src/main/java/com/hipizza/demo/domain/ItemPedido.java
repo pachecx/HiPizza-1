@@ -14,7 +14,7 @@ public class ItemPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DB104_ITE_PED_ID")
+    @Column(name = "DB105_ITE_PED_ID")
     private Long id;
 
     @ManyToOne
@@ -26,7 +26,7 @@ public class ItemPedido {
     @JoinColumn(name = "DB108_PRO_ID", nullable = false)
     private Produto produto;
 
-    @Column(name = "DB104_ITE_PED_QTD", nullable = false)
+    @Column(name = "DB105_ITE_PED_QTD", nullable = false)
     @NotNull(message = "quantidade não pode ser nulo!")
     @Min(value = 1, message = "A quantidade deve ser no mínimo 1")
     @Max(value = 999, message = "A quantidade deve ser no máximo 999")
