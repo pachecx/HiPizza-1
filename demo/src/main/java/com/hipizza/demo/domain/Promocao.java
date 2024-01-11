@@ -1,11 +1,14 @@
 package com.hipizza.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hipizza.demo.enums.Tamanho;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,4 +39,17 @@ public class Promocao {
     @Enumerated(EnumType.STRING)
     @Column(name = "DB109_PRO_TAMANHOS")
     private List<Tamanho> tamanho;
+
+    @ManyToMany
+    @JoinTable(
+            name = "DB110_promocao_categoria",
+            joinColumns = @JoinColumn(name = "promocao_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    @JsonManagedReference
+    private List<Categoria> categorias = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "DB101_EST_ID")
+    @JsonBackReference
+    private Estabelecimento estabelecimento;
 }
