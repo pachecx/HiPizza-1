@@ -3,6 +3,7 @@ package com.hipizza.demo.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.hipizza.demo.enums.Tamanho;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -26,9 +27,10 @@ public class Categoria {
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "DB103_CAT_TAMANHO", length = 10)
-    @Pattern(regexp = "pequeno|médio|grande", message = "tamanho deve ser: pequeno, médio ou grande")
-    private String tamanho;
+    //@Pattern(regexp = "pequeno|médio|grande", message = "tamanho deve ser: pequeno, médio ou grande")
+    private Tamanho tamanho;
 
     @Column(name = "DB103_CAT_DESCRICAO", length = 150)
     @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")

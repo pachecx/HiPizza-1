@@ -1,10 +1,12 @@
 package com.hipizza.demo.domain;
 
+import com.hipizza.demo.enums.Tamanho;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "DB109_promocao")
@@ -30,4 +32,8 @@ public class Promocao {
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor unitário deve ser maior que zero.")
     @DecimalMax(value = "9999999.99", message = "O valor unitário não pode exceder 9.999.999,99.")
     private BigDecimal valor_promocao;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DB109_PRO_TAMANHOS")
+    private List<Tamanho> tamanho;
 }
