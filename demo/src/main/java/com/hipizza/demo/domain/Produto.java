@@ -26,7 +26,7 @@ public class Produto {
     @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
     private String descricao;
 
-    @Column(name = "DB108_PRO_VALOR_UNITARIO")
+    @Column(name = "DB108_PRO_VALOR_UNITARIO", nullable = false)
     @NotNull(message = "O valor unitário não pode se nulo!")
     @DecimalMin(value = "0.0", inclusive = false, message = "O valor unitário deve ser maior que zero.")
     @DecimalMax(value = "9999999.99", message = "O valor unitário não pode exceder 9.999.999,99.")
