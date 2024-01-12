@@ -17,7 +17,7 @@ public class PromocaoService {
         promocaoRepository.save(promocao);
     }
 
-    public List<Promocao> listarPromocoess() {
+    public List<Promocao> listarPromocoes() {
         return promocaoRepository.findAll();
     }
 }

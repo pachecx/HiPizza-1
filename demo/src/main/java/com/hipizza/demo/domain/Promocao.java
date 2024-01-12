@@ -40,16 +40,17 @@ public class Promocao {
     @Column(name = "DB109_PRO_TAMANHOS")
     private List<Tamanho> tamanho;
 
-    @ManyToMany
+   /* @ManyToMany
     @JoinTable(
             name = "DB110_promocao_categoria",
             joinColumns = @JoinColumn(name = "promocao_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     @JsonManagedReference
     private List<Categoria> categorias = new ArrayList<>();
+    */
 
     @ManyToOne
-    @JoinColumn(name = "DB101_EST_ID")
+    @JoinColumn(name = "DB103_CAT_ID")
     @JsonBackReference
-    private Estabelecimento estabelecimento;
+    private Categoria categoria;
 }
