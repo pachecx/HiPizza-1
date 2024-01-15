@@ -41,10 +41,11 @@ public class Categoria {
     @JsonIgnore
     private List<Produto> produtos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "categorias")
     @JsonManagedReference
     @JsonIgnore
     private List<Promocao> promocoes = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name = "DB101_EST_ID")
