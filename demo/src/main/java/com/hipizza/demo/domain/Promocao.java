@@ -43,8 +43,8 @@ public class Promocao {
     @ManyToMany()
     @JoinTable(
             name = "DB110_promocao_categoria",
-            joinColumns = @JoinColumn(name = "DB103_CAT_ID"),
-            inverseJoinColumns = @JoinColumn(name = "DB109_PRO_ID"))
+            joinColumns = @JoinColumn(name = "DB109_PRO_ID"),
+            inverseJoinColumns = @JoinColumn(name = "DB103_CAT_ID"))
     //@JsonBackReference
     private List<Categoria> categorias = new ArrayList<>();
 
