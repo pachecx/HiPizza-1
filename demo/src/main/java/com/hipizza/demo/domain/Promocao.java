@@ -32,7 +32,7 @@ public class Promocao {
 
     @Column(name = "DB109_PRO_VALOR_PROMOCAO", nullable = false)
     @NotNull(message = "O valor não pode se nulo!")
-    @DecimalMin(value = "0.0", inclusive = false, message = "O valor unitário deve ser maior que zero.")
+    @DecimalMin(value = "0.0", inclusive = false, message = "O valor da promoção deve ser maior que zero.")
     @DecimalMax(value = "9999999.99", message = "O valor unitário não pode exceder 9.999.999,99.")
     private BigDecimal valor_promocao;
 

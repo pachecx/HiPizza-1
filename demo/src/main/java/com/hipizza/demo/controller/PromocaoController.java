@@ -24,4 +24,14 @@ public class PromocaoController {
         return ResponseEntity.ok(promocaoService.listarPromocoes());
     }
 
+    @DeleteMapping(value = "/{id}/excluir")
+    public ResponseEntity<String> excluir(@PathVariable Long id){
+        promocaoService.excluirPromocaoPorId(id);
+        return ResponseEntity.ok("Promoção excluída com sucesso!");
+    }
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id,@Validated @RequestBody Promocao promocao) {
+        promocao = promocaoService.atualizarPromocao(id, promocao);
+        return ResponseEntity.ok("Promoção atualizada com sucesso!");
+    }
 }
