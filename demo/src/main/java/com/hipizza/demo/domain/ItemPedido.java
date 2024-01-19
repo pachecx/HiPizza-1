@@ -1,6 +1,7 @@
 package com.hipizza.demo.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -23,7 +24,7 @@ public class ItemPedido {
     private Pedido pedido;
 
     @ManyToOne
-    @JoinColumn(name = "DB108_PRO_ID", nullable = false)
+    @JoinColumn(name = "DB108_PRO_ID")
     private Produto produto;
 
     @Column(name = "DB105_ITE_PED_QTD", nullable = false)

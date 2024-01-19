@@ -5,6 +5,7 @@ import com.hipizza.demo.repository.EstabelecimentoRepository;
 import com.hipizza.demo.repository.PedidoRepository;
 import com.hipizza.demo.repository.PerfilEstabelecimentoRepository;
 import com.hipizza.demo.repository.ProdutoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,18 +75,31 @@ public class PedidoService {
         pedido.setValor_total(valorTotal);
     }
     public Pedido atualizarPedido(Long id, Pedido pedidoAlterado) {
-
         Pedido pedidoExistente = pedidoRepository.getReferenceById(id);
         atualizarDados(pedidoExistente, pedidoAlterado);
         calcularValorTotal(pedidoExistente);
         return pedidoRepository.save(pedidoExistente);
 
     }
+
     private void atualizarDados(Pedido pedidoExistente, Pedido pedidoAlterado) {
         pedidoExistente.setForma_pagamento(pedidoAlterado.getForma_pagamento());
         pedidoExistente.setObservacao(pedidoAlterado.getObservacao());
         pedidoExistente.setStatus(pedidoAlterado.getStatus());
-        //pedidoExistente.setItensPedido(pedidoAlterado.getItensPedido());
+
+        // Limpa os itens do pedido existente
+        pedidoExistente.getItensPedido().clear();
+
+        // Adiciona ou atualiza os itens do pedido alterado no pedido existente
+        for (ItemPedido itemAlterado : pedidoAlterado.getItensPedido()) {
+            ItemPedido itemExistente = new ItemPedido();
+            itemExistente.setQuantidade(itemAlterado.getQuantidade());
+            itemExistente.setProduto(itemAlterado.getProduto());
+            itemExistente.setPedido(pedidoExistente);
+
+            pedidoExistente.getItensPedido().add(itemExistente);
+        }
+
     }
 
 }

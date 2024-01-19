@@ -39,7 +39,7 @@ public class Pedido {
     @Column(name = "DB106_PED_STATUS", length = 12)
     private StatusPedido status;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<ItemPedido> itensPedido = new ArrayList<>();
 
