@@ -73,5 +73,19 @@ public class PedidoService {
 
         pedido.setValor_total(valorTotal);
     }
+    public Pedido atualizarPedido(Long id, Pedido pedidoAlterado) {
+
+        Pedido pedidoExistente = pedidoRepository.getReferenceById(id);
+        atualizarDados(pedidoExistente, pedidoAlterado);
+        calcularValorTotal(pedidoExistente);
+        return pedidoRepository.save(pedidoExistente);
+
+    }
+    private void atualizarDados(Pedido pedidoExistente, Pedido pedidoAlterado) {
+        pedidoExistente.setForma_pagamento(pedidoAlterado.getForma_pagamento());
+        pedidoExistente.setObservacao(pedidoAlterado.getObservacao());
+        pedidoExistente.setStatus(pedidoAlterado.getStatus());
+        //pedidoExistente.setItensPedido(pedidoAlterado.getItensPedido());
+    }
 
 }

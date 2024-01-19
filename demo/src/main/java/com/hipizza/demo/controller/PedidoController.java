@@ -4,6 +4,7 @@ import com.hipizza.demo.domain.Pedido;
 import com.hipizza.demo.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,5 +43,10 @@ public class PedidoController {
     public ResponseEntity<String> excluir(@PathVariable Long id) {
         pedidoService.excluirPedidoPorId(id);
         return ResponseEntity.ok("Pedido excluído com sucesso!");
+    }
+    @PutMapping(value = "/{id}/alterar")
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Pedido pedido){
+        pedido = pedidoService.atualizarPedido(id,pedido);
+        return ResponseEntity.ok("Pedido atualizado com sucesso!");
     }
 }
