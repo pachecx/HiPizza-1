@@ -45,7 +45,7 @@ public class Promocao {
             name = "DB110_promocao_categoria",
             joinColumns = @JoinColumn(name = "DB109_PRO_ID"),
             inverseJoinColumns = @JoinColumn(name = "DB103_CAT_ID"))
-    //@JsonBackReference
+    @JsonBackReference
     private List<Categoria> categorias = new ArrayList<>();
 
 /*

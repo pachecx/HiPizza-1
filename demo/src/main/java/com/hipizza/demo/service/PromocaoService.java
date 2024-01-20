@@ -20,6 +20,9 @@ public class PromocaoService {
         return promocaoRepository.findAll();
     }
 
+    public List<Promocao> getPromocoesPorCategoria(Long idCategoria) {
+        return promocaoRepository.findByCategoriasId(idCategoria);}
+
     public void excluirPromocaoPorId(Long id){  promocaoRepository.deleteById(id); }
     public Promocao atualizarPromocao(Long id, Promocao promocaoAlterada){
 

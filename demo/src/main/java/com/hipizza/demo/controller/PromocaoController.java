@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/promocao")
 public class PromocaoController {
@@ -33,5 +35,10 @@ public class PromocaoController {
     public ResponseEntity<String> alterar(@PathVariable Long id,@Validated @RequestBody Promocao promocao) {
         promocao = promocaoService.atualizarPromocao(id, promocao);
         return ResponseEntity.ok("Promoção atualizada com sucesso!");
+    }
+    @GetMapping("/listar/{idCategoria}")
+    public ResponseEntity<List<Promocao>> getPromocaoPorCategoria(@PathVariable Long idCategoria) {
+        List<Promocao> promocoes = promocaoService.getPromocoesPorCategoria(idCategoria);
+        return ResponseEntity.ok(promocoes);
     }
 }
