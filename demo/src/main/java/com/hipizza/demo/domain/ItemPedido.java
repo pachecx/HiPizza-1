@@ -27,6 +27,10 @@ public class ItemPedido {
     @JoinColumn(name = "DB108_PRO_ID")
     private Produto produto;
 
+    @ManyToOne
+    @JoinColumn(name = "DB109_PRO_ID")
+    private Promocao promocao;
+
     @Column(name = "DB105_ITE_PED_QTD", nullable = false)
     @NotNull(message = "quantidade não pode ser nulo!")
     @Min(value = 1, message = "A quantidade deve ser no mínimo 1")

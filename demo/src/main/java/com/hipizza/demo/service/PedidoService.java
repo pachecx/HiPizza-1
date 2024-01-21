@@ -1,10 +1,7 @@
 package com.hipizza.demo.service;
 
 import com.hipizza.demo.domain.*;
-import com.hipizza.demo.repository.EstabelecimentoRepository;
-import com.hipizza.demo.repository.PedidoRepository;
-import com.hipizza.demo.repository.PerfilEstabelecimentoRepository;
-import com.hipizza.demo.repository.ProdutoRepository;
+import com.hipizza.demo.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +22,9 @@ public class PedidoService {
 
     @Autowired
     private EstabelecimentoRepository estabelecimentoRepository;
+
+    @Autowired
+    private PromocaoRepository promocaoRepository;
 
 
     public void cadastrarPedido(Pedido pedido) {
@@ -60,9 +60,17 @@ public class PedidoService {
 
         valorTotal = valorTotal.add(valorEntrega);//somando com valor da entrega
         for (ItemPedido itemPedido : pedido.getItensPedido()) {
-            Produto produto = produtoRepository.findById(itemPedido.getProduto().getId()).orElse(null);
+            BigDecimal valorUnitario = BigDecimal.ZERO;
 
-            BigDecimal valorUnitario = produto.getValor_unitario();
+            if(itemPedido.getPromocao() != null){
+                Promocao promocao = promocaoRepository.findById(itemPedido.getPromocao().getId()).orElse(null);
+                valorUnitario = promocao.getValor_promocao();
+            } else if (itemPedido.getProduto() != null) {
+                Produto produto = produtoRepository.findById(itemPedido.getProduto().getId()).orElse(null);
+                valorUnitario = produto.getValor_unitario();
+            }
+
+            // BigDecimal valorUnitario = produto.getValor_unitario();
 
             // Calcular quantidade * valor unitário
             BigDecimal valorItem = valorUnitario.multiply(BigDecimal.valueOf(itemPedido.getQuantidade()));
