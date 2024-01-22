@@ -103,6 +103,7 @@ public class PedidoService {
             ItemPedido itemExistente = new ItemPedido();
             itemExistente.setQuantidade(itemAlterado.getQuantidade());
             itemExistente.setProduto(itemAlterado.getProduto());
+            itemExistente.setPromocao(itemAlterado.getPromocao());
             itemExistente.setPedido(pedidoExistente);
 
             pedidoExistente.getItensPedido().add(itemExistente);
