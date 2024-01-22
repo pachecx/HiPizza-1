@@ -20,6 +20,7 @@ public class Funcionario {
 
     @Column(name = "DB104_FUN_NOME", length = 80, nullable = false)
     @NotBlank(message = "nome não pode ficar em branco!")
+    @Pattern(regexp = "^[a-zA-ZÀ-ÖØ-öø-ÿ]+$", message = "Nome inválido! (Deve conter apenas letras e acentos)")
     @Size(min = 0, max = 80, message = "Nome inválido!(Deve conter no máximo 80 caracteres)")
     private String nome;
 
