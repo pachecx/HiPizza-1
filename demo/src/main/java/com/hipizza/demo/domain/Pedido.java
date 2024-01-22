@@ -8,6 +8,7 @@ import com.hipizza.demo.enums.StatusPedido;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -29,7 +30,7 @@ public class Pedido {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "DB106_PED_FORMA_PAGAMENTO", length = 30)
-    @NotBlank(message = "A formam de pagamento não pode ficar em branco!")
+    @NotNull(message = "A forma de pagamento não pode ficar em branco!")
     private FormaPagamento forma_pagamento;
 
     @Column(name = "DB106_PED_OBS", length = 150)
