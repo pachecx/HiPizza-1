@@ -13,16 +13,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity //marcando a classe como entidade no db
-@Table(name = "DB110_avaliacao") //nomenado a nova tabela no db
+@Table(name = "DB111_avaliacao") //nomenado a nova tabela no db
 @Data //inclui os métodos
 
 public class Avaliacao {
     @Id //indicando PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "DB110_AVAL_ID")
+    @Column(name= "DB111_AVAL_ID")
     private Long id;
 
-    @Column(name = "DB110_AVAL_NOTA")
+    @Column(name = "DB111_AVAL_NOTA")
     //isso é pra string @Size(min = 0,max = 5)
     @Min(0)
     @Max(5)
@@ -31,7 +31,7 @@ public class Avaliacao {
     private LocalDateTime dataHora = LocalDateTime.now().withSecond(0).withNano(0);
 
 
-    @Column(name = "DB110_AVAL_DESCRICAO")
+    @Column(name = "DB111_AVAL_DESCRICAO")
     @Size(max = 250, message = "A descrição deve contem no máximo 250 caracteres")
     private String descricao;
 
