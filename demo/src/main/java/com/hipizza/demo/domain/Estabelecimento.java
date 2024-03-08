@@ -69,8 +69,8 @@ public class Estabelecimento {
     @Column(name = "senha")
     private String senha; // Provisório até fazer a parte de autenticação
 
-    @Column(name = "DB101_EST_MEDIA")
-    private Double mediaAvaliacao;
+    @Column(name = "DB101_EST_MEDIA_AVALIACAO")
+    private Double media_avaliacao;
 
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
     @JsonManagedReference

@@ -2,6 +2,7 @@ package com.hipizza.demo.service;
 
 import com.hipizza.demo.domain.*;
 import com.hipizza.demo.repository.*;
+import jakarta.persistence.EntityExistsException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,7 +80,9 @@ public class PedidoService {
             valorTotal = valorTotal.add(valorItem);
 
         }
-
+        if (valorTotal.compareTo(BigDecimal.valueOf(perfilEstabelecimento.getPedido_minimo())) < 0){
+            throw new EntityExistsException();
+        }
         pedido.setValor_total(valorTotal);
     }
     public Pedido atualizarPedido(Long id, Pedido pedidoAlterado) {

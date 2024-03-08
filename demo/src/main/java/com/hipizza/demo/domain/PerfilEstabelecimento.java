@@ -46,6 +46,10 @@ public class PerfilEstabelecimento {
     @Column(name = "DB107_PER_EST_FORMAS_PAGAMENTO")
     private List<FormaPagamento> formasPagamento = new ArrayList<>();
 
+    @Column(name = "DB107_PER_EST_PEDIDO_MINIMO")
+    @NotNull
+    private Integer pedido_minimo;
+
     @OneToOne
     @JoinColumn(name = "DB101_EST_ID")
     @JsonBackReference

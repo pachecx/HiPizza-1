@@ -2,7 +2,9 @@ package com.hipizza.demo.controller;
 
 import com.hipizza.demo.domain.Pedido;
 import com.hipizza.demo.service.PedidoService;
+import jakarta.persistence.EntityExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +19,13 @@ public class PedidoController {
 
     @PostMapping("/fazer")
     public ResponseEntity<String> criarPedido(@RequestBody Pedido pedido) {
-        pedidoService.cadastrarPedido(pedido);
-
-        return ResponseEntity.ok("Pedido realizado com sucesso!");
+        try{
+            pedidoService.cadastrarPedido(pedido);
+            return ResponseEntity.ok("Pedido realizado com sucesso!");
+        } catch (EntityExistsException e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CONFLICT).header("X-Error-Message", e.getMessage()).body("O valor do pedido têm que ser maior ou igual ao pedido mínimo do restaurante");
+        }
     }
 
     @GetMapping(value = "/listar")

@@ -65,7 +65,7 @@ public class AvaliacaoService {
         Double media = calcularMedia(idEstabelecimento);
         Estabelecimento estabelecimento = estabelecimentoRepository.findById(idEstabelecimento).orElse(null);
         if (estabelecimento != null) {
-            estabelecimento.setMediaAvaliacao(media);
+            estabelecimento.setMedia_avaliacao(media);
             estabelecimentoRepository.save(estabelecimento);
         }
     }

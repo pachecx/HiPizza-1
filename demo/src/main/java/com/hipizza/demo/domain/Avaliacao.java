@@ -12,30 +12,30 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Entity //marcando a classe como entidade no db
-@Table(name = "DB111_avaliacao") //nomenado a nova tabela no db
-@Data //inclui os métodos
+@Entity
+@Table(name = "DB111_avaliacao")
+@Data
 
 public class Avaliacao {
-    @Id //indicando PK
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "DB111_AVAL_ID")
     private Long id;
 
     @Column(name = "DB111_AVAL_NOTA")
-    //isso é pra string @Size(min = 0,max = 5)
     @Min(0)
     @Max(5)
     private Integer nota;
 
-    private LocalDateTime dataHora = LocalDateTime.now().withSecond(0).withNano(0);
+    @Column(name = "DB111_AVAL_DATA_HORA")
+    private LocalDateTime data_hora = LocalDateTime.now().withSecond(0).withNano(0);
 
 
     @Column(name = "DB111_AVAL_DESCRICAO")
     @Size(max = 250, message = "A descrição deve contem no máximo 250 caracteres")
     private String descricao;
 
-    //@Column(name = "DB110_AVAL_FOTO")
+    //@Column(name = "DB111_AVAL_FOTO")
     //@Lob
     //private byte[] foto;
 
