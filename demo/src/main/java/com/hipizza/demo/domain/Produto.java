@@ -36,4 +36,5 @@ public class Produto {
     @JoinColumn(name = "DB103_CAT_ID")
     @JsonBackReference
     private Categoria categoria;
+    
 }
