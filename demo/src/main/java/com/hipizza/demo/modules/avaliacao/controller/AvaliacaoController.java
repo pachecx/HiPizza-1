@@ -35,6 +35,7 @@ public class AvaliacaoController {
         List<Avaliacao> avaliacao = avaliacaoService.getAvaliacaoPorConsumidor(idConsumidor);
         return ResponseEntity.ok(avaliacao);
     }
+
     @Operation(summary ="Lista avaliações por estabelecimento")
     @GetMapping("/listar-estabelecimento/{idEstabelecimento}")
     public ResponseEntity<List<Avaliacao>> getAvaliacaoPorConsumidor(@PathVariable Long idEstabelecimento) {
