@@ -1,7 +1,6 @@
-package com.hipizza.demo.modules.estabelecimento.controller;
-
-import com.hipizza.demo.modules.consumidor.domain.Consumidor;
-import com.hipizza.demo.modules.estabelecimento.service.FuncionarioService;
+package com.hipizza.demo.modules.funcionario.controller;
+import com.hipizza.demo.modules.funcionario.service.FuncionarioService;
+import com.hipizza.demo.modules.funcionario.domain.Funcionario;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class FuncionarioController {
 
     @Operation(summary = "Cadastrar um funcionário")
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@Validated @RequestBody Consumidor.Funcionario funcionario) {
+    public ResponseEntity<String> incluir(@Validated @RequestBody Funcionario funcionario) {
         funcionarioService.cadastrarFuncionario(funcionario);
         return ResponseEntity.ok("Funcionário cadastrado com sucesso!");
     }
@@ -32,8 +31,8 @@ public class FuncionarioController {
     }
     @Operation(summary = "Listar funcionários por estabelecimento")
     @GetMapping("/listar/{idEstabelecimento}")
-    public ResponseEntity<List<Consumidor.Funcionario>> getFuncionariosPorEstabelecimento(@PathVariable Long idEstabelecimento) {
-        List<Consumidor.Funcionario> funcionarios = funcionarioService.getFuncionariosPorEstabelecimento(idEstabelecimento);
+    public ResponseEntity<List<Funcionario>> getFuncionariosPorEstabelecimento(@PathVariable Long idEstabelecimento) {
+        List<Funcionario> funcionarios = funcionarioService.getFuncionariosPorEstabelecimento(idEstabelecimento);
         return ResponseEntity.ok(funcionarios);
     }
     @Operation(summary = "Excluir um funcionário por ID")
@@ -44,7 +43,7 @@ public class FuncionarioController {
     }
     @Operation(summary = "Atualizar um funcionário por ID")
     @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Consumidor.Funcionario funcionario) {
+    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Funcionario funcionario) {
         funcionario = funcionarioService.atualizarFuncionario(id, funcionario);
         return ResponseEntity.ok("Funcionário atualizado com sucesso!");
     }

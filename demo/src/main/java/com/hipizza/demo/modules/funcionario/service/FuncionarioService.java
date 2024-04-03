@@ -1,7 +1,7 @@
-package com.hipizza.demo.modules.estabelecimento.service;
+package com.hipizza.demo.modules.funcionario.service;
 
-import com.hipizza.demo.modules.consumidor.domain.Consumidor;
-import com.hipizza.demo.modules.estabelecimento.repository.FuncionarioRepository;
+import com.hipizza.demo.modules.funcionario.domain.Funcionario;
+import com.hipizza.demo.modules.funcionario.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public void cadastrarFuncionario(Consumidor.Funcionario funcionario) {
+    public void cadastrarFuncionario(Funcionario funcionario) {
         funcionarioRepository.save(funcionario);
     }
 
@@ -22,27 +22,27 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
-    public List<Consumidor.Funcionario> listarFuncionarios() {
+    public List<Funcionario> listarFuncionarios() {
         return funcionarioRepository.findAll();
     }
 
-    public Consumidor.Funcionario buscarFuncionarioPorId(Long id) {
+    public Funcionario buscarFuncionarioPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
     }
 
-    public List<Consumidor.Funcionario> getFuncionariosPorEstabelecimento(Long idEstabelecimento) {
+    public List<Funcionario> getFuncionariosPorEstabelecimento(Long idEstabelecimento) {
         return funcionarioRepository.findByEstabelecimentoId(idEstabelecimento);
     }
 
-    public Consumidor.Funcionario atualizarFuncionario(Long id, Consumidor.Funcionario funcionarioAlterado) {
+    public Funcionario atualizarFuncionario(Long id, Funcionario funcionarioAlterado) {
 
-        Consumidor.Funcionario funcionarioExistente = funcionarioRepository.getReferenceById(id);
+        Funcionario funcionarioExistente = funcionarioRepository.getReferenceById(id);
         atualizarDados(funcionarioExistente, funcionarioAlterado);
         return funcionarioRepository.save(funcionarioExistente);
 
     }
 
-    private void atualizarDados(Consumidor.Funcionario funcionarioExistente, Consumidor.Funcionario funcionarioAlterado) {
+    private void atualizarDados(Funcionario funcionarioExistente, Funcionario funcionarioAlterado) {
         funcionarioExistente.setCpf(funcionarioAlterado.getCpf());
         funcionarioExistente.setEmail(funcionarioAlterado.getEmail());
         funcionarioExistente.setEndereco(funcionarioAlterado.getEndereco());
