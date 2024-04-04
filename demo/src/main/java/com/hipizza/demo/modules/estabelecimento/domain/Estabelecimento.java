@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hipizza.demo.modules.categoria.domain.Categoria;
 import com.hipizza.demo.modules.consumidor.domain.Consumidor;
+import com.hipizza.demo.modules.funcionario.domain.Funcionario;
 import com.hipizza.demo.modules.pedido.domain.Pedido;
 import com.hipizza.demo.modules.perfilEstabelecimento.domain.PerfilEstabelecimento;
 import jakarta.persistence.*;
@@ -79,7 +80,7 @@ public class Estabelecimento {
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<Consumidor.Funcionario> funcionarios = new ArrayList<>();
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     @OneToMany(mappedBy = "estabelecimento", cascade = CascadeType.ALL)
     @JsonManagedReference
