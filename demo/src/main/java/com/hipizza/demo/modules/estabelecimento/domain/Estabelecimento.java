@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hipizza.demo.modules.categoria.domain.Categoria;
 import com.hipizza.demo.modules.consumidor.domain.Consumidor;
 import com.hipizza.demo.modules.funcionario.domain.Funcionario;
+import com.hipizza.demo.modules.login.dto.LoginRequest;
 import com.hipizza.demo.modules.pedido.domain.Pedido;
 import com.hipizza.demo.modules.perfilEstabelecimento.domain.PerfilEstabelecimento;
+import com.hipizza.demo.modules.roles.domain.Role;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -15,6 +18,8 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Table(name = "DB101_estabelecimentos")
@@ -37,7 +42,7 @@ public class Estabelecimento {
     private String cpf;
 
     @Column(name = "email")
-    private String email; // Provisório até fazer a parte de autenticação
+    private String email; 
 
     @Column(name = "DB101_EST_TELEFONE", length = 20, nullable = false)
     @NotBlank(message = "Telefone não pode ficar em branco!")
@@ -72,7 +77,7 @@ public class Estabelecimento {
     private String conta_corrente;
 
     @Column(name = "senha")
-    private String senha; // Provisório até fazer a parte de autenticação
+    private String senha; 
 
     @Column(name = "DB101_EST_MEDIA_AVALIACAO")
     private Double media_avaliacao;
@@ -96,4 +101,12 @@ public class Estabelecimento {
     @JsonManagedReference
     @JsonIgnore
     private PerfilEstabelecimento perfilEstabelecimento;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role roles;
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(loginRequest.senha(), this.senha);
+    }
 }

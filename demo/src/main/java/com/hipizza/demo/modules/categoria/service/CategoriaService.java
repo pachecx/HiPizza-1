@@ -16,7 +16,6 @@ public class CategoriaService {
         categoriaRepository.save(categoria);
     }
 
-
     public void excluirCategoriaPorId(Long id) {
         categoriaRepository.deleteById(id);
     }
@@ -25,18 +24,27 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
+    public Long findByName(String nome) {
+        var categoriaExitente = categoriaRepository.findByNome(nome);
+        var userOptional = categoriaExitente.get();
+        var id = userOptional.getId();
+
+        return id;
+    }
+
     public Categoria buscarCategoriaPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
     }
+
     public List<Categoria> getCategoriasPorEstabelecimento(Long idEstabelecimento) {
         return categoriaRepository.findByEstabelecimentoId(idEstabelecimento);
     }
 
     public Categoria atualizarCategoria(Long id, Categoria categoriaAlterada) {
 
-            Categoria categoriaExistente = categoriaRepository.getReferenceById(id);
-            atualizarDados(categoriaExistente, categoriaAlterada);
-            return categoriaRepository.save(categoriaExistente);
+        Categoria categoriaExistente = categoriaRepository.getReferenceById(id);
+        atualizarDados(categoriaExistente, categoriaAlterada);
+        return categoriaRepository.save(categoriaExistente);
 
     }
 

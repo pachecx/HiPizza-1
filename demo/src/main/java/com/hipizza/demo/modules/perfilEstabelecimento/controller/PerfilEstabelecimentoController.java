@@ -21,7 +21,7 @@ public class PerfilEstabelecimentoController {
     @PostMapping(value = "/cadastrar")
     public ResponseEntity<String> incluir(@Validated @RequestBody PerfilEstabelecimento perfilEstabelecimento) {
         perfilEstabelecimentoService.cadastrarPerfil(perfilEstabelecimento);
-        return ResponseEntity.ok("Perfil cadastrada com sucesso!");
+        return ResponseEntity.ok("Perfil cadastrado com sucesso!");
     }
     @Operation(summary = "Listar todos os perfis de estabelecimento")
     @GetMapping(value = "/listar")

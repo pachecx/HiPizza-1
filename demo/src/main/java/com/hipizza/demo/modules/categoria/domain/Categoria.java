@@ -30,9 +30,10 @@ public class Categoria {
     private String nome;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "DB103_CAT_TAMANHO", length = 10)
-    //@Pattern(regexp = "pequeno|médio|grande", message = "tamanho deve ser: pequeno, médio ou grande")
-    private Tamanho tamanho;
+    @Column(name = "DB103_CAT_TAMANHO")
+    // @Pattern(regexp = "pequeno|médio|grande", message = "tamanho deve ser:
+    // pequeno, médio ou grande")
+    private List<Tamanho> tamanho = new ArrayList<>();;
 
     @Column(name = "DB103_CAT_DESCRICAO", length = 150)
     @Size(min = 0, max = 150, message = "Descrição inválida!(Deve conter no máximo 150 caracteres)")
@@ -47,7 +48,6 @@ public class Categoria {
     @JsonManagedReference
     @JsonIgnore
     private List<Promocao> promocoes = new ArrayList<>();
-
 
     @ManyToOne
     @JoinColumn(name = "DB101_EST_ID")
