@@ -50,8 +50,9 @@ public class SecurityConfig {
                                 }))
                                 .authorizeHttpRequests(
                                                 auth -> auth
-                                                                .requestMatchers("/login/logar").permitAll()
+                                                                .requestMatchers("/login/auth/**").permitAll()
                                                                 .requestMatchers("/estabelecimento/cadastrar").permitAll()
+                                                                .requestMatchers("/consumidor/cadastrar").permitAll()
                                                                 .anyRequest().authenticated())
                                 .httpBasic(Customizer.withDefaults())
                                 .oauth2ResourceServer(

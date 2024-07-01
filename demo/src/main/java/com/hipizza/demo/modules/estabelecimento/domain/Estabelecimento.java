@@ -19,6 +19,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
@@ -106,7 +107,7 @@ public class Estabelecimento {
     @JoinColumn(name = "role_id")
     private Role roles;
 
-    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder) {
+    public boolean isLoginCorrect(LoginRequest loginRequest, BCryptPasswordEncoder passwordEncoder) {
         return passwordEncoder.matches(loginRequest.senha(), this.senha);
     }
 }

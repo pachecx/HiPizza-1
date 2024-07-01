@@ -1,15 +1,16 @@
 package com.hipizza.demo.modules.consumidor.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.hipizza.demo.modules.estabelecimento.domain.Estabelecimento;
+import com.hipizza.demo.modules.login.dto.LoginRequest;
 import com.hipizza.demo.modules.pedido.domain.Pedido;
+import com.hipizza.demo.modules.roles.domain.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,4 +89,32 @@ public class Consumidor {
     @JsonManagedReference
     @JsonIgnore
     private List<Pedido> pedidos = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn
+    private Role roles;
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, BCryptPasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(loginRequest.senha(), this.senha);
+    }
+
+    public Consumidor() {
+        // Construtor sem args para o JPA Hibernate
+    }
+
+    public Consumidor(String nome, String cpf, String email, String senha, String telefone, String cep, String estado, String cidade, String rua, String bairro, String complemento, String ponto_referencia, Role roles) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.telefone = telefone;
+        this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.rua = rua;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.ponto_referencia = ponto_referencia;
+        this.roles = roles;
+    }
 }

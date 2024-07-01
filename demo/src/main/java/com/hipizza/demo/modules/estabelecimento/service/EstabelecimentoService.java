@@ -14,9 +14,9 @@ public class EstabelecimentoService {
     @Autowired
     private EstabelecimentoRepository estabelecimentoRepository;
 
-    // public void cadastrarEstabelecimento(Estabelecimento estabelecimento) {
-    // estabelecimentoRepository.save(estabelecimento);
-    // }
+    public void cadastrarEstabelecimento(Estabelecimento estabelecimento) {
+        estabelecimentoRepository.save(estabelecimento);
+    }
 
     public List<Estabelecimento> listarEstabelecimentos() {
         return estabelecimentoRepository.findAll();

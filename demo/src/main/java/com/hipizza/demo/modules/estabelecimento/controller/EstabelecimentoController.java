@@ -55,7 +55,7 @@ public class EstabelecimentoController {
     @Transactional
     @Operation(summary = "Cadastrar um estabelecimento")
     @PostMapping(value = "/cadastrar")
-    public ResponseEntity<Void> newEstabelecimento(@RequestBody CreateUserDto dto) {
+    public ResponseEntity<?> newEstabelecimento(@RequestBody CreateUserDto dto) {
 
         var basicRole = roleRepository.findByName(Role.Values.BASIC.name());
         if (basicRole == null) {
@@ -87,7 +87,7 @@ public class EstabelecimentoController {
         newEstabelecimento.setRoles(basicRole);
         userRepository.save(newEstabelecimento);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body("Estabelecimento cadastrado com sucesso.");
     }
 
     @Operation(summary = "Listar todos os estabelecimentos")
