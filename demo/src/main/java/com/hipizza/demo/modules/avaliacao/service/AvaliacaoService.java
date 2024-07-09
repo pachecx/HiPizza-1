@@ -23,24 +23,30 @@ public class AvaliacaoService {
         avaliacaoRepository.save(avaliacao);
         atualizarMediaEstabelecimento(avaliacao.getEstabelecimento().getId());
     }
+
     public void excluirAvaliacaoPorId(Long id){
         avaliacaoRepository.deleteById(id);
     }
+
     public List<Avaliacao> listarAvaliacoes() {
         return avaliacaoRepository.findAll();
     }
+
     public List<Avaliacao> getAvaliacaoPorConsumidor(Long idConsumidor) {
         return avaliacaoRepository.findByConsumidorId(idConsumidor);
     }
+
     public List<Avaliacao> getAvaliacaoPorEstabelecimento(Long idEstabelecimento) {
         return avaliacaoRepository.findByEstabelecimentoId(idEstabelecimento);
     }
+
     public Avaliacao atualizarAvaliacao (Long id, Avaliacao avaliacaoAlterada){
         Avaliacao avaliacaoExistente = avaliacaoRepository.getReferenceById(id);
         atualizarDados(avaliacaoExistente, avaliacaoAlterada);
         atualizarMediaEstabelecimento(avaliacaoExistente.getId());
         return avaliacaoRepository.save(avaliacaoExistente);
     }
+
     public String obterNomePorId(Long idEstabelecimento){
         List<Avaliacao> estabelecimentos = avaliacaoRepository.findByEstabelecimentoId(idEstabelecimento);
         Estabelecimento estabelecimento = estabelecimentos.get(0).getEstabelecimento();

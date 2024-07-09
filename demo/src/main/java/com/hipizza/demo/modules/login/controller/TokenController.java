@@ -39,4 +39,5 @@ public class TokenController {
         LoginResponse response = loginService.authenticateCliente(loginRequest);
         return ResponseEntity.ok(response);
     }
+
 }

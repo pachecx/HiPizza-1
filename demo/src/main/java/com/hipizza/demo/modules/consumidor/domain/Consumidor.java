@@ -90,7 +90,7 @@ public class Consumidor {
     @JsonIgnore
     private List<Pedido> pedidos = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn
     private Role roles;
 
@@ -98,23 +98,4 @@ public class Consumidor {
         return passwordEncoder.matches(loginRequest.senha(), this.senha);
     }
 
-    public Consumidor() {
-        // Construtor sem args para o JPA Hibernate
-    }
-
-    public Consumidor(String nome, String cpf, String email, String senha, String telefone, String cep, String estado, String cidade, String rua, String bairro, String complemento, String ponto_referencia, Role roles) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
-        this.telefone = telefone;
-        this.cep = cep;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.complemento = complemento;
-        this.ponto_referencia = ponto_referencia;
-        this.roles = roles;
-    }
 }

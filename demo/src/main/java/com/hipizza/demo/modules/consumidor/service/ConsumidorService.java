@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ConsumidorService {
@@ -37,21 +38,21 @@ public class ConsumidorService {
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
-        Consumidor novoConsumidor = new Consumidor(
-                consumidor.nome(),
-                consumidor.cpf(),
-                consumidor.email(),
-                passwordEncoder.encode(consumidor.senha()),
-                consumidor.telefone(),
-                consumidor.cep(),
-                consumidor.estado(),
-                consumidor.cidade(),
-                consumidor.rua(),
-                consumidor.bairro(),
-                consumidor.complemento(),
-                consumidor.pontoReferencia(),
-                userRole
-        );
+        Consumidor novoConsumidor = new Consumidor();
+
+        novoConsumidor.setNome(consumidor.nome());
+        novoConsumidor.setCpf(consumidor.cpf());
+        novoConsumidor.setEmail(consumidor.email());
+        novoConsumidor.setSenha(passwordEncoder.encode(consumidor.senha()));
+        novoConsumidor.setTelefone(consumidor.telefone());
+        novoConsumidor.setCep(consumidor.cep());
+        novoConsumidor.setEstado(consumidor.estado());
+        novoConsumidor.setCidade(consumidor.cidade());
+        novoConsumidor.setRua(consumidor.rua());
+        novoConsumidor.setBairro(consumidor.bairro());
+        novoConsumidor.setComplemento(consumidor.complemento());
+        novoConsumidor.setPonto_referencia(consumidor.pontoReferencia());
+        novoConsumidor.setRoles(userRole);
 
         consumidorRepository.save(novoConsumidor);
     }
@@ -71,6 +72,19 @@ public class ConsumidorService {
         atualizarDados(consumidorExistente, consumidorAlterado);
         return consumidorRepository.save(consumidorExistente);
 
+    }
+
+    public String excluirConsumidor(Long id){
+        Optional<Consumidor> queryResult = consumidorRepository.findById(id);
+
+        if(queryResult.isPresent()){
+            consumidorRepository.deleteById(id);
+            return "O consumidor foi excluído.";
+        }
+
+        else{
+            return "O consumidor não foi encontrado ou já foi excluído.";
+        }
     }
 
     private void atualizarDados(Consumidor consumidorExistente, Consumidor consumidorAlterado) {

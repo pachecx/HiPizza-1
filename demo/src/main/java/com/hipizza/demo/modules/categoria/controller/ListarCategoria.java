@@ -3,28 +3,19 @@ package com.hipizza.demo.modules.categoria.controller;
 import com.hipizza.demo.modules.categoria.domain.Categoria;
 import com.hipizza.demo.modules.categoria.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@Tag(name = "Controle de categorias")
-@RequestMapping(value = "/categoria")
-public class CategoriaController {
+public class ListarCategoria {
 
     @Autowired
     private CategoriaService categoriaService;
-
-    @Operation(summary = "Cadastrar uma categoria")
-    @PostMapping(value = "/cadastrar")
-    public ResponseEntity<String> incluir(@Validated @RequestBody Categoria categoria) {
-        categoriaService.cadastrarCategoria(categoria);
-        return ResponseEntity.ok("Categoria cadastrada com sucesso!");
-    }
 
     @Operation(summary = "Listar todas as categorias")
     @GetMapping(value = "/listar")
@@ -39,19 +30,6 @@ public class CategoriaController {
         return ResponseEntity.ok(categorias);
     }
 
-    @Operation(summary = "Excluir uma categoria por ID")
-    @DeleteMapping(value = "/{id}/excluir")
-    public ResponseEntity<String> excluir(@PathVariable Long id) {
-        categoriaService.excluirCategoriaPorId(id);
-        return ResponseEntity.ok("Categoria excluída com sucesso!");
-    }
-
-    @Operation(summary = "Atualizar uma categoria por ID")
-    @PutMapping(value = "/{id}/alterar")
-    public ResponseEntity<String> alterar(@PathVariable Long id, @Validated @RequestBody Categoria categoria) {
-        categoria = categoriaService.atualizarCategoria(id, categoria);
-        return ResponseEntity.ok("Categoria atualizada com sucesso!");
-    }
 
     @Operation(summary = "Buscar uma categoria por nome")
     @GetMapping(value = "/{nome}")
@@ -59,4 +37,5 @@ public class CategoriaController {
         categoriaService.findByName(nome);
         return ResponseEntity.ok(categoriaService.findByName(nome));
     }
+
 }
